@@ -34,13 +34,13 @@ flowchart LR
 | Level | Feature | Where |
 |---|---|---|
 | Core | Validation, leakage-safe pipelines, tuned XGBoost vs LR vs RF | `validate.py`, `train.py` |
-| Tier 1 | Honest economics (do-nothing / offer-everyone / random baselines), break-even success rate, sensitivity | `policy.py`, `reports/RESULTS.md` |
-| Tier 1 | Calibration (Brier, ECE), no class re-weighting | `train.py` |
-| Tier 1 | Capacity targeting: precision/recall/lift @ top-K, gain & lift chart, call list | `reports/gain_lift.png`, Call-list tab |
-| Tier 1 | Bootstrap CIs + **model selection by paired bootstrap** (simpler model wins ties) | `train.py` |
-| Tier 1 | **Actionable** reasons only (not tenure/demographics) -> per-customer retention action | `features.py`, `explain.py` |
-| Tier 2 | Live demo (Streamlit Cloud), fairness audit, scheduled drift workflow, live-performance monitoring (`/feedback`), screenshots, one-pager | see below |
-| Tier 3 | DVC pipeline, Airflow DAGs, Kubernetes manifests, PyTorch MLP + stacking benchmarks | `dvc.yaml`, `airflow/`, `k8s/`, `deep.py` |
+| Decision | Honest economics (do-nothing / offer-everyone / random baselines), break-even success rate, sensitivity | `policy.py`, `reports/RESULTS.md` |
+| Decision | Calibration (Brier, ECE), no class re-weighting | `train.py` |
+| Decision | Capacity targeting: precision/recall/lift @ top-K, gain & lift chart, call list | `reports/gain_lift.png`, Call-list tab |
+| Decision | Bootstrap CIs + **model selection by paired bootstrap** (simpler model wins ties) | `train.py` |
+| Decision | **Actionable** reasons only (not tenure/demographics) -> per-customer retention action | `features.py`, `explain.py` |
+| Monitoring | Live demo (Streamlit Cloud), fairness audit, scheduled drift workflow, live-performance monitoring (`/feedback`), screenshots, one-pager | see below |
+| Infra | DVC pipeline, Airflow DAGs, Kubernetes manifests, PyTorch MLP + stacking benchmarks | `dvc.yaml`, `airflow/`, `k8s/`, `deep.py` |
 | Ops | MLflow, model registry + versions, CI (lint, tests, k8s schema, docker build), CD to GHCR, Docker | `.github/`, `Dockerfile` |
 
 ## Quick start
@@ -83,7 +83,7 @@ python performance.py                                # live AUC once /feedback l
 ```
 Scheduled version: `.github/workflows/monitor.yml` checks `monitoring/current.csv` daily and opens an issue on ALERT.
 
-## Tier 3 extras (what they are, honestly)
+## Pipeline and deployment tooling (what is built, what is not)
 - **DVC:** first delete the `data/` line from `.gitignore`, then `dvc init && dvc add data/WA_Fn-UseC_-Telco-Customer-Churn.csv`, `dvc remote add -d storage ../dvc-storage`,
   `dvc repro`, `dvc push`. Change `params.yaml` -> `dvc repro` -> `dvc metrics diff`. A teammate does `git clone` + `dvc pull`.
   (With DVC, `data/` must NOT be in the root `.gitignore` - DVC creates `data/.gitignore` itself; I verified push, fresh clone, `dvc pull` and `dvc repro`.)
