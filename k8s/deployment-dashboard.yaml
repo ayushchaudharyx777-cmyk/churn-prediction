@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: churn-dashboard
+  namespace: churn
+  labels: {app: churn-dashboard}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: churn-dashboard}
+  template:
+    metadata:
+      labels: {app: churn-dashboard}
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: dashboard
+          image: churn-api:1.0
+          imagePullPolicy: IfNotPresent
+          command: ["streamlit", "run", "app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+          ports:
+            - containerPort: 8501
+          envFrom:
+            - configMapRef: {name: churn-config}
+          readinessProbe:
+            httpGet: {path: /_stcore/health, port: 8501}
+            initialDelaySeconds: 15
+          resources:
+            requests: {cpu: 250m, memory: 512Mi}
+            limits: {cpu: "1", memory: 1Gi}

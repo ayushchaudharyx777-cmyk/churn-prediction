@@ -1,0 +1,136 @@
+{
+  "model_version": "20261002-191122",
+  "model_name": "Logistic Regression",
+  "git_commit": "nogit",
+  "trained_at": "2026-10-02T19:12:25.390574+00:00",
+  "threshold": 0.38,
+  "capacity": 0.2,
+  "capacity_cutoff": 0.510899,
+  "baseline_roc_auc": 0.8476,
+  "columns": [
+    "SeniorCitizen",
+    "Partner",
+    "Dependents",
+    "tenure",
+    "PhoneService",
+    "MultipleLines",
+    "InternetService",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "Contract",
+    "PaperlessBilling",
+    "PaymentMethod",
+    "MonthlyCharges",
+    "TotalCharges",
+    "n_services",
+    "charges_per_month",
+    "monthly_vs_avg"
+  ],
+  "excluded_features": [
+    "gender"
+  ],
+  "env": {
+    "scikit-learn": "1.9.0",
+    "xgboost": "3.4.1",
+    "shap": "0.52.0",
+    "pandas": "3.0.5",
+    "numpy": "2.4.4"
+  },
+  "raw_numeric": {
+    "tenure": [
+      0.0,
+      72.0,
+      29.0,
+      true
+    ],
+    "MonthlyCharges": [
+      18.25,
+      118.75,
+      70.35,
+      false
+    ],
+    "TotalCharges": [
+      18.8,
+      8684.8,
+      1397.475,
+      false
+    ]
+  },
+  "raw_cat": {
+    "SeniorCitizen": [
+      0,
+      1
+    ],
+    "Partner": [
+      "No",
+      "Yes"
+    ],
+    "Dependents": [
+      "No",
+      "Yes"
+    ],
+    "PhoneService": [
+      "No",
+      "Yes"
+    ],
+    "MultipleLines": [
+      "No",
+      "No phone service",
+      "Yes"
+    ],
+    "InternetService": [
+      "DSL",
+      "Fiber optic",
+      "No"
+    ],
+    "OnlineSecurity": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "OnlineBackup": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "DeviceProtection": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "TechSupport": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "StreamingTV": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "StreamingMovies": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "Contract": [
+      "Month-to-month",
+      "One year",
+      "Two year"
+    ],
+    "PaperlessBilling": [
+      "No",
+      "Yes"
+    ],
+    "PaymentMethod": [
+      "Bank transfer (automatic)",
+      "Credit card (automatic)",
+      "Electronic check",
+      "Mailed check"
+    ]
+  }
+}

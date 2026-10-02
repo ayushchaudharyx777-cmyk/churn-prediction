@@ -1,0 +1,4 @@
+# Optional Tier-3 extras (not needed for the core project)
+-r requirements-train.txt
+torch        # deep-learning challenger model (deep.py)
+dvc          # data / pipeline versioning

@@ -1,0 +1,11 @@
+pandas
+numpy
+scipy
+scikit-learn>=1.2
+xgboost
+shap
+matplotlib
+joblib
+streamlit
+fastapi
+uvicorn

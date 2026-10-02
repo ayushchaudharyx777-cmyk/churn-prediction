@@ -1,0 +1,12 @@
+[
+  {
+    "attribute": "SeniorCitizen",
+    "flag_rate_ratio_min_over_max": 0.482,
+    "recall_gap": 0.15
+  },
+  {
+    "attribute": "gender",
+    "flag_rate_ratio_min_over_max": 0.986,
+    "recall_gap": 0.013
+  }
+]

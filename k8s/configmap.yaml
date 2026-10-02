@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: churn-config
+  namespace: churn
+data:
+  MODEL_DIR: /app/models
+  PRED_LOG: /app/logs/predictions.jsonl
+  LABEL_LOG: /app/logs/labels.jsonl

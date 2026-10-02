@@ -1,0 +1,42 @@
+# Reproducible pipeline: dvc repro   |   compare experiments: dvc metrics diff / dvc params diff
+# Small outputs use cache:false so they stay in git (needed for the Streamlit demo); the raw dataset is tracked by DVC.
+stages:
+  validate:
+    cmd: python validate.py --data data/WA_Fn-UseC_-Telco-Customer-Churn.csv
+    deps:
+      - data/WA_Fn-UseC_-Telco-Customer-Churn.csv
+      - validate.py
+      - features.py
+  train:
+    cmd: python train.py
+    deps:
+      - data/WA_Fn-UseC_-Telco-Customer-Churn.csv
+      - train.py
+      - features.py
+      - validate.py
+      - policy.py
+      - explain.py
+      - deep.py
+    params:
+      - train
+    outs:
+      - models/model.joblib:
+          cache: false
+      - models/meta.json:
+          cache: false
+      - models/reference.csv:
+          cache: false
+      - reports/metrics.csv:
+          cache: false
+      - reports/high_risk_customers.csv:
+          cache: false
+      - reports/fairness_slices.csv:
+          cache: false
+    metrics:
+      - reports/final_metrics.json:
+          cache: false
+  gate:
+    cmd: python scripts/quality_gate.py
+    deps:
+      - reports/final_metrics.json
+      - scripts/quality_gate.py

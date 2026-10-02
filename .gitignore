@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+data/
+# ^ keeps the raw dataset out of git. If you use DVC, DELETE this line first (DVC manages data/.gitignore itself).
+models/archive/
+logs/
+mlruns/
+mlflow.db
+*.pyc

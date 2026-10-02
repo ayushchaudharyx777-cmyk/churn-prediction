@@ -1,0 +1,10 @@
+# Tracked by DVC (dvc params diff) and read by train.py. FAST=1 overrides n_iter/cv_splits/n_boot for smoke runs.
+train:
+  seed: 42
+  capacity: 0.20          # share of customers the retention team can contact
+  loss_per_churner: 500   # ASSUMPTION: revenue lost when a churner leaves
+  offer_cost: 50          # ASSUMPTION: cost of one retention offer
+  save_rate: 0.30         # ASSUMPTION: share of contacted churners the offer actually keeps
+  n_iter: 25              # XGBoost random-search iterations
+  cv_splits: 5
+  n_boot: 1000            # bootstrap resamples for confidence intervals

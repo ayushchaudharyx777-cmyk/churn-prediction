@@ -1,0 +1,5 @@
+attribute,group,n,churn_rate,flag_rate,recall,precision,auc
+gender,Female,687,0.2809,0.3246,0.6891,0.5964,0.8425
+gender,Male,722,0.2507,0.3199,0.7017,0.5498,0.853
+SeniorCitizen,0,1187,0.2325,0.2755,0.6558,0.5535,0.8494
+SeniorCitizen,1,222,0.4414,0.5721,0.8061,0.622,0.7796

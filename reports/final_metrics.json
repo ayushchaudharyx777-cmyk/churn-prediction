@@ -1,0 +1,119 @@
+{
+  "version": "20261002-191122",
+  "deployed_model": "Logistic Regression",
+  "selection_reason": "XGBoost (tuned) minus Logistic Regression = -0.0002 AUC (95% CI [-0.0032, +0.0028], out-of-fold on train): XGBoost is not significantly better (CI includes 0) -> the simpler, directly interpretable Logistic Regression is deployed.",
+  "threshold": 0.38,
+  "theoretical_threshold": 0.3333,
+  "capacity": 0.2,
+  "capacity_cutoff": 0.5109,
+  "roc_auc": 0.8476,
+  "roc_auc_ci": [
+    0.8252,
+    0.8676
+  ],
+  "pr_auc": 0.663,
+  "pr_auc_ci": [
+    0.612,
+    0.7106
+  ],
+  "brier": 0.1349,
+  "ece": 0.0231,
+  "precision_at_capacity": 0.6879,
+  "precision_at_capacity_ci": [
+    0.6241,
+    0.7411
+  ],
+  "recall_at_capacity": 0.5187,
+  "recall_at_capacity_ci": [
+    0.4764,
+    0.5606
+  ],
+  "lift_at_capacity": 2.592,
+  "base_churn_rate": 0.2654,
+  "threshold_policy": {
+    "flagged_share": 0.3222,
+    "precision": 0.5727,
+    "recall": 0.6952,
+    "f1": 0.628
+  },
+  "breakeven_save_rate": 0.145,
+  "saving_capacity_policy": 15000,
+  "saving_threshold_policy": 16300,
+  "policies": [
+    {
+      "policy": "Do nothing",
+      "contacted": 0,
+      "cost": 187000,
+      "saving_vs_do_nothing": 0,
+      "saving_pct": 0.0
+    },
+    {
+      "policy": "Offer everyone",
+      "contacted": 1409,
+      "cost": 201350,
+      "saving_vs_do_nothing": -14350,
+      "saving_pct": -7.7
+    },
+    {
+      "policy": "Random 20% of customers",
+      "contacted": 282,
+      "cost": 189870,
+      "saving_vs_do_nothing": -2870,
+      "saving_pct": -1.5
+    },
+    {
+      "policy": "Model: top 20% (call list)",
+      "contacted": 282,
+      "cost": 172000,
+      "saving_vs_do_nothing": 15000,
+      "saving_pct": 8.0
+    },
+    {
+      "policy": "Model: cost-optimal threshold 0.38",
+      "contacted": 454,
+      "cost": 170700,
+      "saving_vs_do_nothing": 16300,
+      "saving_pct": 8.7
+    }
+  ],
+  "challengers": [
+    {
+      "model": "Random Forest",
+      "auc_diff_vs_deployed": -0.0062,
+      "ci_low": -0.0102,
+      "ci_high": -0.0024,
+      "verdict": "significantly worse",
+      "deployable": false
+    },
+    {
+      "model": "XGBoost (default)",
+      "auc_diff_vs_deployed": -0.0245,
+      "ci_low": -0.0313,
+      "ci_high": -0.0176,
+      "verdict": "significantly worse",
+      "deployable": false
+    },
+    {
+      "model": "XGBoost (tuned)",
+      "auc_diff_vs_deployed": -0.0002,
+      "ci_low": -0.0032,
+      "ci_high": 0.0028,
+      "verdict": "no significant difference",
+      "deployable": true
+    },
+    {
+      "model": "Stacking (LR+RF+XGB)",
+      "auc_diff_vs_deployed": 0.0003,
+      "ci_low": -0.0012,
+      "ci_high": 0.0018,
+      "verdict": "no significant difference",
+      "deployable": false
+    }
+  ],
+  "assumptions": {
+    "loss_per_churner": 500,
+    "offer_cost": 50,
+    "save_rate": 0.3,
+    "capacity": 0.2
+  }
+}
