@@ -1,7 +1,7 @@
 # Customer Churn Prediction - end-to-end ML + MLOps
 
-![CI](https://github.com/<your-username>/churn-prediction/actions/workflows/ci.yml/badge.svg)
-**Live demo:** <paste your Streamlit Cloud URL here> | **API docs:** `/docs` | **One-pager:** [`reports/ONE_PAGER.md`](reports/ONE_PAGER.md)
+![CI](https://github.com/ayushchaudharyx777-cmyk/churn-prediction/actions/workflows/ci.yml/badge.svg)
+**API docs:** `/docs` | **One-pager:** [`reports/ONE_PAGER.md`](reports/ONE_PAGER.md)
 
 Predict which telecom customers will churn, decide **who to contact under a limited budget**, explain each
 prediction with **actionable reasons**, serve it via an API, **monitor drift and live performance**, and ship it with
@@ -102,13 +102,37 @@ docker compose up --build        # API :8000 + dashboard :8501 (models/ mounted)
 - `ci.yml` on every push: `ruff`, `pytest` (trains a model on synthetic data, tests API/drift/policy), Kubernetes schema check, `docker build`.
 - `cd.yml` on a tag: `git tag v1.0.0 && git push --tags` -> image on `ghcr.io/<username>/churn-prediction`.
 
-## Live demo (Streamlit Community Cloud)
-1. `python train.py`, then `python scripts/pin_requirements.py` (pins library versions to the ones the model was trained with).
-2. Commit `models/` and `reports/` (small) and push to GitHub - the dashboard needs them. Do not commit `models/archive/`.
-3. share.streamlit.io -> New app -> your repo, branch `main`, main file `app.py` -> Deploy. Paste the URL at the top of this README.
-
 ## Results
-Paste from `reports/RESULTS.md` and `reports/ONE_PAGER.md` (auto-generated after training).
+![Charts](docs/screenshots/charts.png)
+![Drivers and threshold](docs/screenshots/charts2.png)
+![Call list](docs/screenshots/call_list.png)
+![Monitoring](docs/screenshots/monitoring.png)
+![CI](docs/screenshots/ci_green.png)
+
+**Deployed model:** Logistic Regression. Tuned XGBoost was not significantly better (AUC difference -0.0002, 95% CI [-0.0032, +0.0028], out-of-fold), so the simpler, interpretable model was chosen.
+
+| Metric (test set) | Value |
+|---|---|
+| ROC-AUC | 0.8476 |
+| Churners reached by top-20% call list | 52% (precision 69%, lift 2.59x) |
+| Break-even offer success rate | 14% |
+
+**Business impact (assumed: churner loses 500, offer costs 50, offer keeps 30% of contacted churners):**
+
+| Policy | Contacted | Saving vs do nothing |
+|---|---|---|
+| Offer everyone | 1409 | -14,350 |
+| Random 20% | 282 | -2,870 |
+| Model: top 20% call list | 282 | +15,000 (8%) |
+| Model: cost-optimal threshold 0.38 | 454 | +16,300 (8.7%) |
+
+**Key insights**
+- The model is what makes the campaign profitable: offering everyone or contacting randomly loses money.
+- Logistic Regression, tuned XGBoost and stacking perform the same (AUC within +/-0.003), so the features carry the signal, not the algorithm.
+- Probabilities are well calibrated, so scores can be read as probabilities.
+- Gender is not a model input; flag rates are near-identical across genders (ratio 0.99). Senior citizens are flagged ~2x as often, which matches their ~1.9x higher churn rate; recall is higher for seniors (81% vs 66%) but ranking quality is lower (AUC 0.78 vs 0.85, n=222, noisy).
+- The suggested action for each customer comes from their top actionable churn driver.
+- Savings depend entirely on the assumed offer success rate; the campaign only pays off above ~14%.
 
 ## Limitations
 - Economics are assumptions; no real campaign data. Static snapshot, so no out-of-time validation.
