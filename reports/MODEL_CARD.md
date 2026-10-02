@@ -1,4 +1,4 @@
-# Model card - Churn predictor (20261002-191122)
+# Model card - Churn predictor (20261002-202417)
 
 - **Model:** Logistic Regression in a sklearn Pipeline (impute + scale/encode). Selected by paired bootstrap on out-of-fold AUC.
 - **Intended use:** rank existing telecom customers to prioritise retention outreach under a contact budget.

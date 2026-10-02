@@ -7,5 +7,14 @@
     "lift_at_capacity": 2.592,
     "threshold": 0.38,
     "n_train": 5634
+  },
+  {
+    "version": "20261002-202417",
+    "model": "Logistic Regression",
+    "git_commit": "aa86351",
+    "roc_auc": 0.8476,
+    "lift_at_capacity": 2.592,
+    "threshold": 0.38,
+    "n_train": 5634
   }
 ]

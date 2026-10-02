@@ -1,5 +1,5 @@
 {
-  "version": "20261002-191122",
+  "version": "20261002-202417",
   "deployed_model": "Logistic Regression",
   "selection_reason": "XGBoost (tuned) minus Logistic Regression = -0.0002 AUC (95% CI [-0.0032, +0.0028], out-of-fold on train): XGBoost is not significantly better (CI includes 0) -> the simpler, directly interpretable Logistic Regression is deployed.",
   "threshold": 0.38,
@@ -100,14 +100,6 @@
       "ci_high": 0.0028,
       "verdict": "no significant difference",
       "deployable": true
-    },
-    {
-      "model": "Stacking (LR+RF+XGB)",
-      "auc_diff_vs_deployed": 0.0003,
-      "ci_low": -0.0012,
-      "ci_high": 0.0018,
-      "verdict": "no significant difference",
-      "deployable": false
     }
   ],
   "assumptions": {

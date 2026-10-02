@@ -1,8 +1,8 @@
 {
-  "model_version": "20261002-191122",
+  "model_version": "20261002-202417",
   "model_name": "Logistic Regression",
-  "git_commit": "nogit",
-  "trained_at": "2026-10-02T19:12:25.390574+00:00",
+  "git_commit": "aa86351",
+  "trained_at": "2026-10-02T20:25:01.926379+00:00",
   "threshold": 0.38,
   "capacity": 0.2,
   "capacity_cutoff": 0.510899,
@@ -34,11 +34,11 @@
     "gender"
   ],
   "env": {
-    "scikit-learn": "1.9.0",
+    "scikit-learn": "1.9.1",
     "xgboost": "3.4.1",
     "shap": "0.52.0",
-    "pandas": "3.0.5",
-    "numpy": "2.4.4"
+    "pandas": "3.0.6",
+    "numpy": "2.5.3"
   },
   "raw_numeric": {
     "tenure": [
