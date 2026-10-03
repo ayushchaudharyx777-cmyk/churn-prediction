@@ -146,3 +146,11 @@ features.py validate.py policy.py explain.py train.py deep.py api.py monitor.py 
 params.yaml dvc.yaml  airflow/dags/  k8s/  scripts/  tests/  docs/  monitoring/
 Dockerfile docker-compose.yml  .github/workflows/{ci,cd,monitor}.yml  requirements*.txt  pyproject.toml
 ```
+
+## Future scope
+
+- **Uplift modelling:** predict who will stay because of the offer, not just who is likely to leave.
+- **Real campaign data:** measure the offer success rate with an A/B test; the 30 percent used here is an assumption.
+- **Out-of-time validation:** train on earlier months and test on later ones once dated data is available.
+- **Wider fairness monitoring:** audit more customer groups and track the gaps over time.
+- **Automatic retraining:** retrain and run the quality gate when drift reaches ALERT or live AUC degrades.
