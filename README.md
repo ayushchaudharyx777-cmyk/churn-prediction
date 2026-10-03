@@ -1,5 +1,7 @@
 # Customer Churn Prediction - end-to-end ML + MLOps
 
+![Python](https://img.shields.io/badge/python-3.11-blue) ![XGBoost](https://img.shields.io/badge/XGBoost-benchmarked-EC6B23) ![SHAP](https://img.shields.io/badge/SHAP-explanations-8A2BE2) ![MLflow](https://img.shields.io/badge/MLflow-tracking-0194E2) ![FastAPI](https://img.shields.io/badge/FastAPI-API-009688) ![Tests](https://img.shields.io/badge/tests-36_passing-brightgreen)
+
 ![CI](https://github.com/ayushchaudharyx777-cmyk/churn-prediction/actions/workflows/ci.yml/badge.svg)
 **API docs:** `/docs` | **One-pager:** [`reports/ONE_PAGER.md`](reports/ONE_PAGER.md)
 
